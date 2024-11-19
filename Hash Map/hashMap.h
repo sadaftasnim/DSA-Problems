@@ -212,38 +212,4 @@ V getValue(string key)
 
 
 
-/*
-A hash table uses a hash function to compute an index into an array of buckets .
-With the help of key , Hash function generates an index where the value will be stored.
 
-Hash function consists of two parts
-1 . Hash code
-2 . Compression function
-
-A compression function is a part of the hash function process that ensures
-the hash value fits within the range of available indices in the hash table. (Index = Hash code % Number of buckets).
-
-When hash function generates the same hash value(index) of two different key then collision occurs.
-
-For handle collision we have two ways-
-1. Closed hashing(Separate chaining).
-2. Open Addressing(Linear Probing , Quadratic Probing , Double Hashing).
-
-Separate chaining: Separate chaining is a method used in hash tables to handle collisions (when multiple keys map to the same index).
-Instead of storing just one key at an index, it allows multiple keys to be stored using linked list .
-
-Linear Probing : Check the next index sequentially until an empty spot is found.
-
-Rehashing : Rehashing means resizing a hash table when it becomes too full . multiple keys may map to the same index.
-This increases the time to find or insert elements.
-
-Load Factor:
-The load factor is the ratio of the number of elements to the table size:
-
-Load Factor = Number of Elements/Table Size (count / numBuckets).
-
-If the load factor exceeds a certain threshold (e.g., 0.7), the hash table needs resizing.
-
-Then we will create a new bucketArray of double size of old bucketsArray .
-then recalculate the bucketIndex on the basis of new bucketsArray size.
-then elements get copied from old bucketsArray to new bucketArray at their new Index. After we will have to delete old bucketArray.
