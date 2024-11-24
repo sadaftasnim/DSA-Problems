@@ -54,19 +54,3 @@ This approach is similar to the first one but does **not explicitly use a `visit
    - If DFS returns `false` at any point, the graph is **not bipartite**, so return `false`.
 4. If DFS completes without any issues, return `true`, indicating that the graph is bipartite.
 
----
-
-### Key Differences Between Approaches
-
-- **Approach 1** uses two separate arrays: one for `visited[]` and one for `color[]`. This ensures explicit management of visited nodes during DFS traversal.
-- **Approach 2** simplifies the implementation by using only the `color[]` array. If a node is uncolored, it is treated as unvisited. This makes the code slightly more compact.
-
----
-
-### Time Complexity
-
-Both approaches have a time complexity of **O(V + E)**, where `V` is the number of vertices and `E` is the number of edges in the graph. This is because we visit each node and edge once during DFS traversal.
-
-### Conclusion
-
-Both approaches are effective for determining if a graph is bipartite. The choice between the two depends on your preference for using an additional `visited[]` array (Approach 1) or simplifying the code by using only the `color[]` array (Approach 2).
