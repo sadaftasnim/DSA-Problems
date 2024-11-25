@@ -44,3 +44,64 @@ int main()
 	cout << findMaxEdges(adj, n);
 	return 0;
 }
+
+
+
+
+//-----------------------------//
+// Approach 2 Using visited array
+
+#include <bits/stdc++.h>
+using namespace std;
+
+// To store counts of nodes with two colors
+long long count_color[2];
+
+// DFS function with visited array
+void dfs(vector<int> adj[], int node, int color, vector<bool>& visited)
+{
+    // Mark the current node as visited
+    visited[node] = true;
+
+    // Increment count of nodes with the current color
+    count_color[color]++;
+
+    // Traverse adjacent nodes
+    for (int neighbor : adj[node]) {
+        // Recur only if the neighbor is not visited
+        if (!visited[neighbor]) {
+            dfs(adj, neighbor, !color, visited);
+        }
+    }
+}
+
+// Finds maximum number of edges that can be added
+// without violating Bipartite property.
+int findMaxEdges(vector<int> adj[], int n)
+{
+    // Initialize visited array
+    vector<bool> visited(n + 1, false);
+
+    // Perform DFS starting from node 1
+    dfs(adj, 1, 0, visited);
+
+    return count_color[0] * count_color[1] - (n - 1);
+}
+
+// Driver code
+int main()
+{
+    int n = 5;
+    vector<int> adj[n + 1];
+    adj[1].push_back(2);
+    adj[1].push_back(3);
+    adj[2].push_back(1);
+    adj[2].push_back(4);
+    adj[3].push_back(1);
+    adj[3].push_back(5);
+    adj[4].push_back(2);
+    adj[5].push_back(3);
+
+    cout << findMaxEdges(adj, n);
+    return 0;
+}
