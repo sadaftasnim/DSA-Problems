@@ -15,8 +15,8 @@ void dijkstra(int source, const vector<vector<pair<int, int>>>& adjList) {
     minHeap.push({0, source}); // Push source with distance 0
 
     while (!minHeap.empty()) {
-        int dist = minHeap.top().first;
-        int node = minHeap.top().second;
+        int dist = minHeap.top().first; // distance
+        int node = minHeap.top().second; // Node
         minHeap.pop();
 
         // Process only if the current distance is up-to-date
@@ -24,13 +24,14 @@ void dijkstra(int source, const vector<vector<pair<int, int>>>& adjList) {
 
         // Explore neighbors of the current node
         for (const auto& neighbor : adjList[node]) {
-            int next = neighbor.first;
+            int v = neighbor.first;
             int weight = neighbor.second;
 
             // Relaxation step: Check if a shorter path is found
-            if (dist + weight < distances[next]) {
-                distances[next] = dist + weight;
-                minHeap.push({distances[next], next}); // Push updated distance to the min-heap
+            if (dist + weight < distances[v]) {
+                distances[v] = dist + weight;
+                minHeap.push({distances[v], v}); // Push updated distance along with neighbour vertex to the min-heap 
+				                                 // and min heap sort itself based on distance.
             }
         }
     }
